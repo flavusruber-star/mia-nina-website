@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MIA NINA • BEAST MODE</title>
+    <meta name="description" content="Mia Nina - Industrial Dubstep Artist. Beast Mode single coming soon. Underground club culture, gaming, dark electronic music.">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --neon-blue: #00d4ff;
+            --dark-bg: #0a0a0a;
+            --mid-bg: #1a1a1a;
+            --light-text: #e0e0e0;
+            --glitch-1: #ff00ff;
+            --glitch-2: #00ff00;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--dark-bg);
+            color: var(--light-text);
+            font-family: 'Rajdhani', sans-serif;
+            overflow-x: hidden;
+            cursor: crosshair;
+        }
+
+        /* Scanline Effect */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.15),
+                rgba(0, 0, 0, 0.15) 1px,
+                transparent 1px,
+                transparent 2px
+            );
+            pointer-events: none;
+            z-index: 9999;
+            animation: scanline 8s linear infinite;
+        }
+
+        @keyframes scanline {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(100vh); }
+        }
+
+        /* Noise Texture */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 9998;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 50%, rgba(0, 212, 255, 0.15), transparent 50%),
+                        radial-gradient(circle at 70% 50%, rgba(255, 0, 255, 0.1), transparent 50%);
+            filter: blur(80px);
+            animation: bgPulse 8s ease-in-out infinite;
+        }
+
+        @keyframes bgPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+        }
+
+        .artist-name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(4rem, 15vw, 12rem);
+            font-weight: 900;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+            animation: glitchText 3s infinite;
+        }
+
+        @keyframes glitchText {
+            0%, 90%, 100% {
+                text-shadow: 
+                    0 0 20px var(--neon-blue),
+                    0 0 40px var(--neon-blue);
+            }
+            92% {
+                text-shadow: 
+                    -2px 0 var(--glitch-1),
+                    2px 0 var(--glitch-2),
+                    0 0 20px var(--neon-blue);
+                transform: translate(-2px, 0);
+            }
+            94% {
+                text-shadow: 
+                    2px 0 var(--glitch-1),
+                    -2px 0 var(--glitch-2),
+                    0 0 20px var(--neon-blue);
+                transform: translate(2px, 0);
+            }
+        }
+
+        .tagline {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(1.2rem, 4vw, 2.5rem);
+            letter-spacing: 0.3em;
+            opacity: 0.7;
+            margin-bottom: 3rem;
+            text-transform: uppercase;
+        }
+
+        /* Beast Mode Section */
+        .beast-mode-section {
+            min-height: 100vh;
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, var(--dark-bg) 0%, var(--mid-bg) 100%);
+            position: relative;
+        }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 4rem;
+            background: linear-gradient(90deg, var(--neon-blue), #fff, var(--neon-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 3s infinite;
+            background-size: 200% 100%;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        .album-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .album-cover {
+            position: relative;
+            aspect-ratio: 1;
+            margin-bottom: 3rem;
+            border: 3px solid var(--neon-blue);
+            box-shadow: 
+                0 0 30px rgba(0, 212, 255, 0.5),
+                inset 0 0 60px rgba(0, 212, 255, 0.1);
+            overflow: hidden;
+            animation: coverFloat 6s ease-in-out infinite;
+        }
+
+        @keyframes coverFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(1deg); }
+        }
+
+        .album-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: contrast(1.1) saturate(1.2);
+        }
+
+        .album-cover::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shine 4s infinite;
+        }
+
+        @keyframes shine {
+            0% { left: -100%; }
+            50%, 100% { left: 100%; }
+        }
+
+        /* YouTube Player */
+        .player-container {
+            background: rgba(0, 0, 0, 0.6);
+            border: 2px solid rgba(0, 212, 255, 0.3);
+            padding: 2rem;
+            margin-bottom: 3rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .player-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.8rem;
+            letter-spacing: 0.2em;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            color: var(--neon-blue);
+        }
+
+        .youtube-embed {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .youtube-embed iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .playlist {
+            display: grid;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .playlist-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            border-left: 3px solid transparent;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .playlist-item:hover {
+            background: rgba(0, 212, 255, 0.1);
+            border-left-color: var(--neon-blue);
+            transform: translateX(10px);
+        }
+
+        .playlist-item.active {
+            background: rgba(0, 212, 255, 0.2);
+            border-left-color: var(--neon-blue);
+        }
+
+        .play-icon {
+            width: 0;
+            height: 0;
+            border-left: 12px solid var(--neon-blue);
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+            flex-shrink: 0;
+        }
+
+        /* Newsletter Section */
+        .newsletter-section {
+            min-height: 100vh;
+            padding: 6rem 2rem;
+            background: var(--dark-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .newsletter-container {
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .newsletter-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            margin-bottom: 1rem;
+            color: var(--neon-blue);
+        }
+
+        .newsletter-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            opacity: 0.8;
+        }
+
+        .newsletter-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-input {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(0, 212, 255, 0.3);
+            padding: 1.2rem;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.1rem;
+            color: var(--light-text);
+            transition: all 0.3s ease;
+        }
+
+        .form-input::placeholder {
+            color: rgba(224, 224, 224, 0.5);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, var(--neon-blue), #0099cc);
+            border: none;
+            padding: 1.5rem;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+            letter-spacing: 0.2em;
+            color: #000;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .submit-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .submit-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.6);
+        }
+
+        .submit-btn span {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Social Links */
+        .social-section {
+            padding: 4rem 2rem;
+            background: var(--mid-bg);
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .social-link {
+            width: 60px;
+            height: 60px;
+            border: 2px solid rgba(0, 212, 255, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: var(--neon-blue);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .social-link::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            background: linear-gradient(45deg, var(--neon-blue), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+
+        .social-link:hover {
+            transform: scale(1.2) rotate(5deg);
+            box-shadow: 0 0 20px var(--neon-blue);
+        }
+
+        .social-link:hover::before {
+            opacity: 1;
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 2rem;
+            text-align: center;
+            background: var(--dark-bg);
+            border-top: 1px solid rgba(0, 212, 255, 0.2);
+            font-size: 0.9rem;
+            opacity: 0.6;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .artist-name {
+                letter-spacing: 0.05em;
+            }
+
+            .tagline {
+                letter-spacing: 0.15em;
+            }
+
+            .player-container {
+                padding: 1rem;
+            }
+
+            .social-links {
+                gap: 1rem;
+            }
+
+            .social-link {
+                width: 50px;
+                height: 50px;
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--dark-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loader {
+            width: 80px;
+            height: 80px;
+            border: 4px solid rgba(0, 212, 255, 0.1);
+            border-top-color: var(--neon-blue);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Success Message */
+        .success-message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background: rgba(0, 212, 255, 0.95);
+            color: #000;
+            padding: 2rem 3rem;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+            letter-spacing: 0.2em;
+            z-index: 10001;
+            transition: transform 0.3s ease;
+            box-shadow: 0 0 50px rgba(0, 212, 255, 0.8);
+        }
+
+        .success-message.show {
+            transform: translate(-50%, -50%) scale(1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading" id="loading">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Success Message -->
+    <div class="success-message" id="successMessage">
+        SUBSCRIPTION SUCCESSFUL!
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <h1 class="artist-name">MIA NINA</h1>
+            <p class="tagline">INDUSTRIAL • DUBSTEP • UNDERGROUND</p>
+        </div>
+    </section>
+
+    <!-- Beast Mode Section -->
+    <section class="beast-mode-section">
+        <h2 class="section-title">BEAST MODE</h2>
+        
+        <div class="album-container">
+            <div class="album-cover">
+                <img src="/mnt/user-data/uploads/MiaBeastMode.jpeg" alt="Beast Mode Single Cover">
+            </div>
+
+            <div class="player-container">
+                <h3 class="player-title">NOW PLAYING</h3>
+                <div class="youtube-embed" id="youtubePlayer">
+                    <!-- YouTube iframe will load here -->
+                    <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: var(--neon-blue); font-family: 'Bebas Neue'; font-size: 1.5rem; letter-spacing: 0.2em;">
+                        LOADING PLAYLIST...
+                    </div>
+                </div>
+
+                <div class="playlist">
+                    <div class="playlist-item active" data-video-id="dQw4w9WgXcQ">
+                        <div class="play-icon"></div>
+                        <span>BEAST MODE - Official Audio</span>
+                    </div>
+                    <div class="playlist-item" data-video-id="VIDEO_ID_2">
+                        <div class="play-icon"></div>
+                        <span>BEHIND THE SCENES - Beast Mode</span>
+                    </div>
+                    <div class="playlist-item" data-video-id="VIDEO_ID_3">
+                        <div class="play-icon"></div>
+                        <span>MIA NINA - Studio Session</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+        <div class="newsletter-container">
+            <h2 class="newsletter-title">JOIN THE UNDERGROUND</h2>
+            <p class="newsletter-subtitle">Get early access to new releases, exclusive content, and underground events.</p>
+            
+            <form class="newsletter-form" id="newsletterForm">
+                <input type="text" class="form-input" placeholder="FULL NAME" name="name" required>
+                <input type="email" class="form-input" placeholder="EMAIL ADDRESS" name="email" required>
+                <input type="text" class="form-input" placeholder="CITY (OPTIONAL)" name="city">
+                <button type="submit" class="submit-btn">
+                    <span>ENTER BEAST MODE</span>
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Social Links -->
+    <section class="social-section">
+        <h3 class="section-title" style="font-size: 2rem; margin-bottom: 1rem;">CONNECT</h3>
+        <div class="social-links">
+            <a href="#" class="social-link" title="YouTube" aria-label="YouTube">▶</a>
+            <a href="#" class="social-link" title="Instagram" aria-label="Instagram">📷</a>
+            <a href="#" class="social-link" title="Spotify" aria-label="Spotify">🎵</a>
+            <a href="#" class="social-link" title="Discord" aria-label="Discord">💬</a>
+            <a href="#" class="social-link" title="Telegram" aria-label="Telegram">✈</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 MIA NINA • ALL RIGHTS RESERVED • BEAST MODE COMING SOON</p>
+    </footer>
+
+    <script>
+        // Loading Screen
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loading').classList.add('hidden');
+            }, 1500);
+        });
+
+        // YouTube Player Integration
+        let player;
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('youtubePlayer', {
+                height: '100%',
+                width: '100%',
+                videoId: 'dQw4w9WgXcQ', // Default video ID (example)
+                playerVars: {
+                    autoplay: 0,
+                    controls: 1,
+                    rel: 0,
+                    modestbranding: 1
+                }
+            });
+        }
+
+        // Load YouTube API
+        const tag = document.createElement('script');
+        tag.src = 'https://www.youtube.com/iframe_api';
+        const firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        // Playlist Navigation
+        document.querySelectorAll('.playlist-item').forEach(item => {
+            item.addEventListener('click', function() {
+                document.querySelectorAll('.playlist-item').forEach(i => i.classList.remove('active'));
+                this.classList.add('active');
+                
+                const videoId = this.getAttribute('data-video-id');
+                if (player && player.loadVideoById) {
+                    player.loadVideoById(videoId);
+                }
+            });
+        });
+
+        // Supabase Configuration
+        const SUPABASE_URL = 'https://gkmvpuxvrmmkwhzfmcuz.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdrbXZwdXh2cm1ta3doemZtY3V6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA0NTk4ODcsImV4cCI6MjA4NjAzNTg4N30.kUugFW-34tEg4bORC1dLQl-gCc1aMNlhL6J9HHPFglA';
+
+        // Newsletter Form Submission with Supabase
+        document.getElementById('newsletterForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.textContent;
+            submitBtn.textContent = 'SENDING...';
+            submitBtn.disabled = true;
+            
+            const formData = {
+                name: this.name.value.trim(),
+                email: this.email.value.trim().toLowerCase(),
+                city: this.city.value.trim() || null
+            };
+
+            try {
+                // Send to Supabase
+                const response = await fetch(`${SUPABASE_URL}/rest/v1/newsletter_subscribers`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'apikey': SUPABASE_ANON_KEY,
+                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                        'Prefer': 'return=minimal'
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                if (response.ok || response.status === 201) {
+                    // Success!
+                    console.log('✅ Newsletter subscription successful!');
+                    
+                    // Show success message
+                    const successMsg = document.getElementById('successMessage');
+                    successMsg.classList.add('show');
+                    
+                    // Reset form
+                    this.reset();
+                    
+                    // Hide message after 5 seconds
+                    setTimeout(() => {
+                        successMsg.classList.remove('show');
+                    }, 5000);
+                } else {
+                    // Handle errors
+                    const errorData = await response.json();
+                    console.error('Error response:', errorData);
+                    
+                    if (errorData.message && errorData.message.includes('duplicate')) {
+                        alert('This email is already subscribed! 🎵');
+                    } else {
+                        alert('Something went wrong. Please try again! 😢');
+                    }
+                }
+            } catch (error) {
+                console.error('Network error:', error);
+                alert('Connection error. Please check your internet and try again! 🌐');
+            } finally {
+                submitBtn.textContent = originalBtnText;
+                submitBtn.disabled = false;
+            }
+        });
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Parallax Effect
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const heroBg = document.querySelector('.hero-bg');
+            if (heroBg) {
+                heroBg.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+    </script>
+</body>
+</html>
